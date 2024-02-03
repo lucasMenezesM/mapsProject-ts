@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
+import { Mappable } from "./Map";
 
-export class User {
+export class User implements Mappable {
   private firstName: string;
   private lastName: string;
   private sex: "female" | "male" | undefined;
@@ -26,6 +27,10 @@ export class User {
     return this.lastName;
   }
 
+  getName(): string {
+    return `${this.getFirstName()} ${this.getLastName()}`;
+  }
+
   getLocation(): Location {
     return this.location;
   }
@@ -36,6 +41,13 @@ export class User {
 
   getPhoneNumber(): string {
     return this.phoneNumber;
+  }
+
+  getSummary(): string {
+    return `
+    <h1>Name: ${this.getName()}</h1>
+    <h3>Phone: ${this.getPhoneNumber()}</h3>
+  `;
   }
 }
 

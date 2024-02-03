@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
+import { Mappable } from "./Map";
 
-export class Company {
+export class Company implements Mappable {
   private name: string;
   private location: {
     lat: number;
@@ -33,5 +34,13 @@ export class Company {
 
   getPhoneNumber(): string {
     return this.phoneNumber;
+  }
+
+  getSummary(): string {
+    return `
+      <h1>Name: ${this.getName()}</h1>
+      <h3>Phone: ${this.getPhoneNumber()}</h3>
+      <h4>Catchprahse: ${this.getPhrase()}</h4>
+    `;
   }
 }
